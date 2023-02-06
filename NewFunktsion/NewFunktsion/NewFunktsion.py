@@ -1,4 +1,5 @@
-﻿from module1 import *
+from module1 import *
+
 while True: 
     isikukood=input("Sisse ikood: ")
     if pikkus(isikukood)==False:
@@ -13,5 +14,7 @@ while True:
             aasta=sünnipäev(isikukood)
             mesjac=kuu(isikukood)
             paev=päev(isikukood)
-            print(f"{aasta}.{mesjac}.{paev}")
+            sünnikoht=sunnikoht(isikukood)
+            xasd=kontrollnumber(isikukood)
+            print(f"{aasta}.{mesjac}.{paev}, {sünnikoht}")
             

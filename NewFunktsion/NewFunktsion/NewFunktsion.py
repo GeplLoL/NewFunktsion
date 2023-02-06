@@ -15,6 +15,7 @@ while True:
             mesjac=kuu(isikukood)
             paev=päev(isikukood)
             sünnikoht=sunnikoht(isikukood)
-            xasd=kontrollnumber(isikukood)
-            print(f"{aasta}.{mesjac}.{paev}, {sünnikoht}")
+            jaak=kontrollnumber(isikukood)
+            print(f"{aasta}.{mesjac}.{paev}, {sünnikoht}, {jaak}")
+            
             

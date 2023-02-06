@@ -1,4 +1,4 @@
-﻿def pikkus(isikukood:str):
+def pikkus(isikukood:str):
     """Funktsioon tagastab True, kui pikkus on 11
      sümbolid
      :param str isikukood: Inimese isikukood
@@ -103,7 +103,7 @@ def sunnikoht(isikukood:str)->str:
     else:
         sünnikoht="Viga koos sünnikoht"
     return sünnikoht
-def kontrollnumber(isikukood:str)->str:
+def kontrollnumber(isikukood:str)->int:
     """kui esimene täht on [1,2,3,4,5,6], siis
       määrame sugu
     :param str isikukood:Isikukood
@@ -111,15 +111,19 @@ def kontrollnumber(isikukood:str)->str:
     """
     astme1=[1, 2, 3, 4, 5, 6, 7, 8, 9, 1]
     astme2=[3, 4, 5, 6, 7, 8, 9, 1, 2, 3]
-    for i in range(0,11)
-    x=isikukood[i]*astme1[i]
-    x=x/11
-    print(x)
-    if x%10:
-    x=isikukood[i]*astme2[i]
-    x=x/11
-    if x = 10:
-        x="Kontrol sum:0"
+    ik_list=list(map(int,list(isikukood)))
+    summa=0
+    for i in range(0,10):
+        summa+=ik_list[i]*astme1[i]
+    s=(summa//11)*11
+    asd=summa-s
+    if asd==int(ik_list[10]):
+        return asd
+    elif asd==10:
+        return 0
     else:
-        x="Viga"
-    return x
+        for i in range(0,10):
+            summa+=ik_list[i]*astme2[i]
+        s=(summa//11)*11
+        asd=summa-s
+        return asd

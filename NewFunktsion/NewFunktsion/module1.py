@@ -1,20 +1,10 @@
 def pikkus(isikukood:str):
-    """Funktsioon tagastab True, kui pikkus on 11
-     sümbolid
-     :param str isikukood: Inimese isikukood
-     :rtype:bool
-    """
     if len(isikukood)==11:
         flag=True
     else:
         flag=False
     return flag
 def sugu(isikukood:str)->str:
-    """kui esimene täht on [1,2,3,4,5,6], siis
-      määrame sugu
-    :param str isikukood:Isikukood
-    :rtype:str
-    """
     listIsikukood=list(map(int,isikukood))
     if listIsikukood[0] in [1,3,5]:
         s="mees"
@@ -24,11 +14,6 @@ def sugu(isikukood:str)->str:
         s="viga"
     return s
 def sünnipäev(isikukood:str)->str:
-    """kui esimene täht on [1,2,3,4,5,6], siis
-      määrame sünnipäev
-    :param str isikukood:Isikukood
-    :rtype:str
-    """
     listIsikukood=list(isikukood)
     if listIsikukood[0] in ["1","2"]:
         s="18"
@@ -40,14 +25,9 @@ def sünnipäev(isikukood:str)->str:
         s="20"
         xy=s+listIsikukood[1]+listIsikukood[2]
     else:
-        s="viga"
+        xy="viga"
     return xy
 def kuu(isikukood:str)->str:
-    """kui esimene täht on [1,2,3,4,5,6], siis
-      määrame sünnipäev
-    :param str isikukood:Isikukood
-    :rtype:str
-    """
     listIsikukood=list(isikukood)
     if  listIsikukood[3] in ["0"] and listIsikukood[4] in ["1","2","3","4","5","6","7","8","9"]:
         kue=listIsikukood[3]+listIsikukood[4]
@@ -57,11 +37,6 @@ def kuu(isikukood:str)->str:
         kue="neljas täht 0-9 and kolmas 0-1"
     return kue
 def päev(isikukood:str)->str:
-    """kui esimene täht on [1,2,3,4,5,6], siis
-      määrame sünnipäev
-    :param str isikukood:Isikukood
-    :rtype:str
-    """
     listIsikukood=list(isikukood)
     if listIsikukood[5] in ["0","1","2"] and listIsikukood[6] in ["0","1","2","3","4","5","6","7","8","9"]:
         paev=listIsikukood[5]+listIsikukood[6]
@@ -103,27 +78,39 @@ def sunnikoht(isikukood:str)->str:
     else:
         sünnikoht="Viga koos sünnikoht"
     return sünnikoht
-def kontrollnumber(isikukood:str)->int:
-    """kui esimene täht on [1,2,3,4,5,6], siis
-      määrame sugu
-    :param str isikukood:Isikukood
-    :rtype:str
-    """
-    astme1=[1, 2, 3, 4, 5, 6, 7, 8, 9, 1]
-    astme2=[3, 4, 5, 6, 7, 8, 9, 1, 2, 3]
-    ik_list=list(map(int,list(isikukood)))
-    summa=0
-    for i in range(0,10):
-        summa+=ik_list[i]*astme1[i]
-    s=(summa//11)*11
-    asd=summa-s
-    if asd==int(ik_list[10]):
-        return asd
-    elif asd==10:
-        return 0
+def kontrollnumber(x:str)->int:
+    xlist=list(map(int,x))
+    astme1=[1,2,3,4,5,6,7,8,9,1]
+    astme2=[3,4,5,6,7,8,9,1,2,3]
+    arv=0
+    for i in range(10):
+        arv+=xlist[i]*astme1[i]
+    if arv%10==0:
+        arv=0
+        for i in range(10):
+            arv+=xlist[i]*astme2[2]
+        arv=arv-(arv//11)*11
     else:
-        for i in range(0,10):
-            summa+=ik_list[i]*astme2[i]
-        s=(summa//11)*11
-        asd=summa-s
-        return asd
+        arv=arv-(arv//11)*11
+    if arv==xlist[10]:
+        x="Kontrollnumber on korras"
+    else:
+        x="Viga"
+    return x
+def arvudSort(arvud:list)->list:
+    arvud=list(map(int,arvud))
+    arvud.sort()
+    return arvud
+def neised_mehed(isikukood:list)->list:
+    naised=[]
+    mehed=[]
+    for kood in isikukood:
+        kood_List=list(kood)
+        if int(kood[0])%2==0:
+            naised.append(kood)
+        else:
+            mehed.append(kood)
+    naised.extend(mehed)
+    isikukood.clear()
+    isikukood=naised
+    return isikukood

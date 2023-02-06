@@ -73,9 +73,53 @@ def päev(isikukood:str)->str:
 def sunnikoht(isikukood:str)->str:
     listIsikukood=list(isikukood)
     summa=listIsikukood[7]+listIsikukood[8]+listIsikukood[9]
-    if summa<=1 and  summa>=10:
+    summa=int(summa)
+    if summa in range(1,11):
         sünnikoht="Kuressaare Haigla"
-    elif summa<=11 and  summa>=19:
+    elif summa in range(11,20):
         sünnikoht="Tartu Ülikooli Naistekliinik, Tartumaa, Tartu"
-    elif summa<=21 and  summa>=220:
-        sünnikoht="Tartu Ülikooli Naistekliinik, Tartumaa, Tartu"
+    elif summa in range(21,220):
+        sünnikoht="Ida-Tallinna Keskhaigla, Pelgulinna sünnitusmaja, Hiiumaa, Keila, Rapla haigla, Loksa haigla"
+    elif summa in range(221,271):
+        sünnikoht="Ida-Viru Keskhaigla (Kohtla-Järve, endine Jõhvi)"
+    elif summa in range(271,371):
+        sünnikoht="Maarjamõisa Kliinikum (Tartu), Jõgeva Haigla"
+    elif summa in range(371,421):
+        sünnikoht="Narva Haigla"
+    elif summa in range(421,471):
+        sünnikoht="Pärnu Haigla"
+    elif summa in range(471,491):
+        sünnikoht="Pelgulinna Sünnitusmaja (Tallinn), Haapsalu haigla"
+    elif summa in range(491,521):
+        sünnikoht="Järvamaa Haigla (Paide)"
+    elif summa in range(521,571):
+        sünnikoht="Rakvere, Tapa haigla"
+    elif summa in range(571,601):
+        sünnikoht="Valga Haigla"
+    elif summa in range(601,651):
+        sünnikoht="Viljandi Haigla"
+    elif summa in range(601,651):
+        sünnikoht="Lõuna-Eesti Haigla (Võru), Põlva Haigla"
+    else:
+        sünnikoht="Viga koos sünnikoht"
+    return sünnikoht
+def kontrollnumber(isikukood:str)->str:
+    """kui esimene täht on [1,2,3,4,5,6], siis
+      määrame sugu
+    :param str isikukood:Isikukood
+    :rtype:str
+    """
+    astme1=[1, 2, 3, 4, 5, 6, 7, 8, 9, 1]
+    astme2=[3, 4, 5, 6, 7, 8, 9, 1, 2, 3]
+    for i in range(0,11)
+    x=isikukood[i]*astme1[i]
+    x=x/11
+    print(x)
+    if x%10:
+    x=isikukood[i]*astme2[i]
+    x=x/11
+    if x = 10:
+        x="Kontrol sum:0"
+    else:
+        x="Viga"
+    return x

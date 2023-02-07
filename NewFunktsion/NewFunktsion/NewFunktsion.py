@@ -4,7 +4,6 @@ valeIsikukood=[]
 haigla=[]
 isikukoodi=[]
 arvud=[]
-
 while True:
     isikukood=input("Sisse ikood: ")
     if pikkus(isikukood)==False:
@@ -24,6 +23,9 @@ while True:
         print(f"{s}, {sunni}.{kui}.{paev} ,{koht}, {jaa}")
         õigeIsikukood.append(isikukood)
         haigla.append(koht)
+    valeIsikukood.sort()
+    õigeIsikukood.sort()
+    haigla.sort()
     print("Vale isikukood", valeIsikukood)
     print("Õige isikukood", õigeIsikukood)
     print("Haigla", haigla)

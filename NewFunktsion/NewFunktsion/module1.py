@@ -1,9 +1,18 @@
 def pikkus(isikukood:str):
-    if len(isikukood)==11:
+    if len(isikukood)==11 and isikukood.isdigit():
         flag=True
     else:
         flag=False
     return flag
+def sugu(isikukood:str)->str:
+    listIsikukood=list(map(int,isikukood))
+    if listIsikukood[0] in [1,3,5]:
+        s="mees"
+    elif listIsikukood[0] in [2,4,6]:
+        s="naine"
+    else:
+        s="viga"
+    return s
 def sugu(isikukood:str)->str:
     listIsikukood=list(map(int,isikukood))
     if listIsikukood[0] in [1,3,5]:
@@ -78,39 +87,29 @@ def sunnikoht(isikukood:str)->str:
     else:
         sünnikoht="Viga koos sünnikoht"
     return sünnikoht
-def kontrollnumber(x:str)->int:
-    xlist=list(map(int,x))
+def kontrollnr(isikukood:str)->int:
     astme1=[1,2,3,4,5,6,7,8,9,1]
     astme2=[3,4,5,6,7,8,9,1,2,3]
-    arv=0
-    for i in range(10):
-        arv+=xlist[i]*astme1[i]
-    if arv%10==0:
-        arv=0
-        for i in range(10):
-            arv+=xlist[i]*astme2[2]
-        arv=arv-(arv//11)*11
+    ik_list=list(isikukood)
+    ik_list=list(map(int,ik_list))
+    summa=0
+    for i in range(0,10,1):
+        summa+=ik_list[i]*astme1[i]
+    s=(summa//11)*11
+    jaak=summa-s
+    if jaak==int(ik_list[10]):
+        return jaak
+    elif jaak==10:
+        return 0
     else:
-        arv=arv-(arv//11)*11
-    if arv==xlist[10]:
-        x="Kontrollnumber on korras"
-    else:
-        x="Viga"
-    return x
-def arvudSort(arvud:list)->list:
-    arvud=list(map(int,arvud))
-    arvud.sort()
-    return arvud
-def neised_mehed(isikukood:list)->list:
-    naised=[]
-    mehed=[]
-    for kood in isikukood:
-        kood_List=list(kood)
-        if int(kood[0])%2==0:
-            naised.append(kood)
+        summa=0
+        for i in range(0,10,1):
+            summa+=ik_list[i]*astme2[i]
+        s=(summa//11)*11
+        jaak=summa-s
+        jaak=str(jaak)
+        if jaak not in isikukood[10]:
+            jaak=False
         else:
-            mehed.append(kood)
-    naised.extend(mehed)
-    isikukood.clear()
-    isikukood=naised
-    return isikukood
+            jaak=True
+        return jaak
